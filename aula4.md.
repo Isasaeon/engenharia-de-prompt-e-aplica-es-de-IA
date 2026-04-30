@@ -1,0 +1,72 @@
+Aqui vai uma implementação robusta, bem documentada e com validações rigorosas:
+Python
+def calcular_media(numeros):
+    """
+    Calcula a média aritmética de uma lista de números.
+
+    Parâmetros:
+        numeros (list ou iterável): coleção de valores numéricos (int ou float)
+
+    Retorna:
+        float: média dos valores
+
+    Levanta:
+        TypeError: se a entrada não for iterável ou contiver elementos não numéricos
+        ValueError: se a lista estiver vazia
+    """
+
+    # Verifica se o objeto é iterável
+    try:
+        iter(numeros)
+    except TypeError:
+        raise TypeError("O argumento deve ser um iterável (ex: lista, tupla).")
+
+    # Converte para lista (caso seja outro iterável, como tupla ou generator)
+    numeros = list(numeros)
+
+    # Verifica se a lista está vazia
+    if len(numeros) == 0:
+        raise ValueError("A lista não pode estar vazia.")
+
+    soma = 0.0
+    quantidade = 0
+
+    # Percorre os elementos validando cada um
+    for i, valor in enumerate(numeros):
+        # Verifica se o elemento é numérico (int ou float)
+        if not isinstance(valor, (int, float)):
+            raise TypeError(f"Elemento inválido na posição {i}: {valor} não é numérico.")
+
+        soma += valor
+        quantidade += 1
+
+    # Cálculo da média
+    media = soma / quantidade
+
+    return media
+🧪 Casos de teste
+Python
+# Caso 1: lista válida
+print(calcular_media([10, 20, 30]))  
+# Esperado: 20.0
+
+
+# Caso 2: lista vazia (deve gerar erro)
+try:
+    print(calcular_media([]))
+except Exception as e:
+    print(e)
+# Esperado: ValueError -> "A lista não pode estar vazia."
+
+
+# Caso 3: lista com valor inválido
+try:
+    print(calcular_media([10, "20", 30]))
+except Exception as e:
+    print(e)
+# Esperado: TypeError -> elemento não numérico
+Se quiser, posso evoluir isso para:
+�⁠aceitar Decimal (alta precisão financeira)
+�⁠ignorar valores inválidos ao invés de quebrar
+ou �⁠calcular média ponderada
+Só falar 👍
